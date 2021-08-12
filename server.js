@@ -8,6 +8,10 @@ const app = express()
 const server = http.createServer(app)
 const io = socket(server)
 
+let users = {
+  'Ankit': 'Ankit0225'
+}
+
 io.on('connection', (socket) => {
   console.log('connected with socket id =' , socket.id);
 
