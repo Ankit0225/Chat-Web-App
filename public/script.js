@@ -14,6 +14,10 @@ socket.on('logged in' ,(data) => {
     $('.chatbox').show()
 })
 
+socket.on('login failed', () => {
+    window.alert('Username or Password is Incorrect')
+})
+
 $('.btnRequest').click(() => {
     socket.emit('msg_send', {
         to: $('.inpToUser').val(),
