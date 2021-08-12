@@ -6,13 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="https://socket.io/images/favicon.png" type="image/x-icon">
     <title>Socket.io</title>
+    <script defer src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script defer src="./script.js"></script>
 </head>
 <body>
     <h1>Chat.com</h1>
+
+    
+    <div class="loginbox">
+       <input class="inpUsername">
+       <button>START</button>
+    </div>
+
+    <div class="chatbox">
     <input class="inpMsg">
     <button class="btn">Request</button>
     <ul class="ulmsglist"></ul>
+    </div>
 </body>
 </html>
