@@ -9,7 +9,7 @@ const server = http.createServer(app)
 const io = socket(server)
 
 let users = {
-  'Ankit': 'Ankit0225'
+  'Ankit': 'Ankit12345'
 }
 
 io.on('connection', (socket) => {
@@ -23,8 +23,19 @@ io.on('connection', (socket) => {
   // })
 
   socket.on('login', (data) => {
-    socket.join(data.User)
-    socket.emit('logged in')
+    if(users[data.User]) {
+        if(users[data.User] == data.password) {
+          socket.join(data.User)
+          socket.emit('logged in')
+        } else {
+          socket.emit('login_failed')
+        }
+    } else {
+      users[data.User] = data.password
+      socket.join(data.User)
+      socket.emit('logged in')
+    }
+   
   })
 
   socket.on('msg_send',(data) => {
