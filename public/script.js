@@ -5,7 +5,8 @@ $('.chatbox').hide()
 
 $('.start').click(() => {
     socket.emit('login', {
-        User: $('.inpUsername').val()
+        User: $('.inpUsername').val(),
+        Password: $('.inpPassword').val()
     })
 })
 socket.on('logged in' ,(data) => {
