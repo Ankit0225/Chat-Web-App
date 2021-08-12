@@ -11,12 +11,12 @@ const io = socket(server)
 io.on('connection', (socket) => {
   console.log('connected with socket id =' , socket.id);
 
-  socket.on('msg_send', (data) =>{
-    // console.log('recieved ',data.msg);
-    // io.emit('recieved', data) // sends everybody
-    // socket.emit('recieved', data) // sends to all and visible to you
-    socket.broadcast.emit('recieved',data) // this visibles the message to all the users except you
-  })
+  // socket.on('msg_send', (data) =>{
+  //   // console.log('recieved ',data.msg);
+  //   // io.emit('recieved', data) // sends everybody
+  //   // socket.emit('recieved', data) // sends to all and visible to you
+  //   socket.broadcast.emit('recieved',data) // this visibles the message to all the users except you
+  // })
 
 })
 app.use('/' , express.static(__dirname + '/public'))
