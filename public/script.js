@@ -26,5 +26,8 @@ $('.btnRequest').click(() => {
 })
 
 socket.on('recieved', (data) => {
-    $('.ulmsglist').append($('<li>').text(data.msg))
+   // $('.ulmsglist').append($('<li>').text(data.msg))
+   $('.ulmsglist').append($('<li>').text(
+       `[${data.from}] : ${data.msg}`
+   ))
 })
