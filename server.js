@@ -12,6 +12,8 @@ let users = {
   'Ankit': 'Ankit12345'
 }
 
+let socketMap ={}
+
 io.on('connection', (socket) => {
   console.log('connected with socket id =' , socket.id);
 
@@ -22,23 +24,29 @@ io.on('connection', (socket) => {
   //   socket.broadcast.emit('recieved',data) // this visibles the message to all the users except you
   // })
 
+function login(soc,use){
+  soc.join(use)
+  soc.emit('logged in')
+  socketMap[soc.id] = use
+  console.log(socketMap);
+}
+
   socket.on('login', (data) => {
     if(users[data.Username]) {
         if(users[data.Username] == data.Password) {
-          socket.join(data.Username)
-          socket.emit('logged in')
+         login(socket, data.Username) 
         } else {
           socket.emit('login failed')
         }
     } else {
       users[data.Username] = data.Password
-      socket.join(data.Username)
-      socket.emit('logged in')
+      login(socket, data.Username) 
     }
-   console.log(users);
+  //  console.log(users);
   })
 
   socket.on('msg_send',(data) => {
+    data.from = socketMap[socket.id]
     if (data.to) {
       io.to(data.to).emit('recieved', data)
     }else{
