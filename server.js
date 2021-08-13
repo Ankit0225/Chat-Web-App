@@ -23,19 +23,19 @@ io.on('connection', (socket) => {
   // })
 
   socket.on('login', (data) => {
-    if(users[data.User]) {
-        if(users[data.User] == data.password) {
-          socket.join(data.User)
+    if(users[data.Username]) {
+        if(users[data.Username] == data.Password) {
+          socket.join(data.Username)
           socket.emit('logged in')
         } else {
-          socket.emit('login_failed')
+          socket.emit('login failed')
         }
     } else {
-      users[data.User] = data.password
-      socket.join(data.User)
+      users[data.Username] = data.Password
+      socket.join(data.Username)
       socket.emit('logged in')
     }
-   
+   console.log(users);
   })
 
   socket.on('msg_send',(data) => {
