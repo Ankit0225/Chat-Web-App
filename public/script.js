@@ -5,7 +5,7 @@ $('.chatbox').hide()
 
 $('.start').click(() => {
     socket.emit('login', {
-        User: $('.inpUsername').val(),
+        Username: $('.inpUsername').val(),
         Password: $('.inpPassword').val()
     })
 })
